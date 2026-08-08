@@ -1,0 +1,64 @@
+/* ============================== BOTÃO DE TEMA ============================== */
+
+.botao-tema {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  color: var(--texto-suave);
+  border: 1px solid var(--linha-forte);
+  border-radius: var(--raio);
+  transition: color 0.3s var(--ease-suave), border-color 0.3s var(--ease-suave),
+    background-color 0.3s var(--ease-suave);
+}
+
+.botao-tema:hover {
+  color: var(--titulo);
+  border-color: var(--linha-azul);
+  background: var(--azul-vidro);
+}
+
+/* Palco de 18px onde os dois ícones ficam empilhados */
+.tema-palco {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+}
+
+.tema-icone {
+  position: absolute;
+  inset: 0;
+  transition: opacity 0.35s var(--ease-suave), transform 0.45s var(--ease-saida);
+}
+
+/* Tema claro (padrão): mostra o sol — clicar leva ao escuro.
+   O ícone indica o estado ATUAL; o aria-label diz para onde a ação leva. */
+.tema-sol {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+.tema-lua {
+  opacity: 0;
+  transform: rotate(-70deg) scale(0.5);
+}
+
+/* Tema escuro: os papéis se invertem */
+[data-tema='escuro'] .tema-sol {
+  opacity: 0;
+  transform: rotate(70deg) scale(0.5);
+}
+
+[data-tema='escuro'] .tema-lua {
+  opacity: 1;
+  transform: rotate(0deg) scale(1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tema-icone {
+    transition: opacity 0.01ms;
+    transform: none !important;
+  }
+}

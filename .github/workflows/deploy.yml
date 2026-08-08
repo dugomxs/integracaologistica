@@ -1,0 +1,54 @@
+name: Publicar no GitHub Pages
+
+# Cada push na main reconstrói e publica o site.
+# O Netlify tem o próprio gatilho (netlify.toml) e roda em paralelo,
+# sem interferir neste fluxo.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Permissões mínimas necessárias para o deploy do Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Um deploy por vez; se chegar um push novo, o anterior é cancelado.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      # npm ci usa o package-lock.json — instalação reproduzível.
+      - run: npm ci
+
+      - run: npm run build
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    name: Deploy
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -1,0 +1,110 @@
+/* ========================= BOTÃO FLUTUANTE WHATSAPP ========================= */
+
+.flutuante {
+  position: fixed;
+  right: clamp(1rem, 3vw, 1.75rem);
+  bottom: clamp(1rem, 3vw, 1.75rem);
+  z-index: 90;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  height: 58px;
+  padding: 0 16px;
+  /* --sobre-cor (branco fixo), não --titulo: o fundo aqui é sempre o verde,
+     nunca o fundo da página, então a cor não pode acompanhar o tema. */
+  color: var(--sobre-cor);
+  /* Verde WhatsApp escurecido: o #25D366 original reprova em contraste AA
+     com texto branco (3,1:1). Este fica em 5,1:1 e segue reconhecível. */
+  background: #0e7c3e;
+  border-radius: 999px;
+  box-shadow: var(--sombra-flutuante), 0 0 0 1px rgba(255, 255, 255, 0.09) inset;
+
+  /* Escondido até o usuário passar do hero */
+  opacity: 0;
+  transform: translateY(18px) scale(0.9);
+  pointer-events: none;
+  transition: opacity 0.45s var(--ease-saida), transform 0.45s var(--ease-saida),
+    background-color 0.3s var(--ease-suave), box-shadow 0.3s var(--ease-suave);
+}
+
+.flutuante.visivel {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
+/* O hover não clareia o fundo (perderia o contraste AA): reforça sombra e elevação. */
+.flutuante:hover,
+.flutuante:focus-visible {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 18px 38px -10px rgba(14, 124, 62, 0.85), 0 0 0 1px rgba(255, 255, 255, 0.2) inset;
+}
+
+.flutuante svg {
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+/* Rótulo que se abre no hover (desktop) */
+.flutuante-rotulo {
+  position: relative;
+  z-index: 1;
+  max-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: var(--fonte-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  opacity: 0;
+  transition: max-width 0.5s var(--ease-saida), opacity 0.35s var(--ease-suave),
+    margin-left 0.5s var(--ease-saida);
+}
+
+/* Anel pulsante para chamar atenção sem ser intrusivo */
+.flutuante-pulso {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #0e7c3e;
+  opacity: 0.55;
+  animation: pulso 2.8s var(--ease-suave) infinite;
+}
+
+@keyframes pulso {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70%,
+  100% {
+    transform: scale(1.32);
+    opacity: 0;
+  }
+}
+
+@media (hover: hover) and (min-width: 640px) {
+  .flutuante:hover .flutuante-rotulo,
+  .flutuante:focus-visible .flutuante-rotulo {
+    max-width: 220px;
+    margin-left: 10px;
+    opacity: 1;
+  }
+}
+
+/* Em telas sem hover o rótulo nunca aparece: mantém o alvo compacto */
+@media (max-width: 639px) {
+  .flutuante {
+    height: 54px;
+    padding: 0 14px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flutuante-pulso {
+    animation: none;
+    opacity: 0;
+  }
+}

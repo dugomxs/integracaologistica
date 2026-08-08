@@ -1,0 +1,139 @@
+/* =============================== PROCESSO =============================== */
+
+.processo-mapa {
+  position: relative;
+}
+
+/* --- Rota SVG (desktop) --- */
+.processo-rota {
+  display: none;
+  width: 100%;
+  height: 120px;
+  margin-bottom: 1.5rem;
+  overflow: visible;
+}
+
+/* --- Trilho vertical (mobile/tablet) --- */
+.processo-trilho-base {
+  position: absolute;
+  left: 19px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: var(--linha);
+}
+
+.processo-trilho {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, var(--azul), var(--azul-claro));
+  transform-origin: top center;
+  will-change: transform;
+}
+
+/* --- Passos --- */
+.processo-passos {
+  display: grid;
+  gap: 2.25rem;
+}
+
+.passo {
+  position: relative;
+  padding-left: 3.5rem;
+}
+
+/* Marcador na linha vertical */
+.passo-marcador {
+  position: absolute;
+  left: 13px;
+  top: 7px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--fundo);
+  border: 1.5px solid var(--azul);
+}
+
+.passo-marcador::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: 50%;
+  background: var(--azul-claro);
+}
+
+.passo-numero {
+  display: block;
+  font-family: var(--fonte-mono);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--azul-claro);
+}
+
+.passo-titulo {
+  margin-top: 0.625rem;
+  font-size: var(--t-titulo);
+  color: var(--titulo);
+}
+
+.passo-texto {
+  margin-top: 0.5rem;
+  font-size: 0.9375rem;
+  color: var(--texto-suave);
+  max-width: 34ch;
+}
+
+/* --- Rodapé da seção --- */
+.processo-rodape {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25rem;
+  margin-top: clamp(3rem, 6vw, 4.5rem);
+  padding-top: 2rem;
+  border-top: 1px solid var(--linha);
+}
+
+.processo-rodape p {
+  color: var(--texto-suave);
+  font-size: 1rem;
+}
+
+@media (min-width: 640px) {
+  .processo-rodape {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+/* --- Desktop: passos em 4 colunas sob a rota --- */
+@media (min-width: 1000px) {
+  .processo-rota {
+    display: block;
+  }
+
+  .processo-trilho-base {
+    display: none;
+  }
+
+  .processo-passos {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+
+  .passo {
+    padding-left: 0;
+    padding-right: 1rem;
+  }
+
+  .passo-marcador {
+    display: none;
+  }
+
+  .passo-texto {
+    max-width: none;
+  }
+}

@@ -1,0 +1,117 @@
+/* ================================ CTA FINAL ================================ */
+
+/* Faixa escura fotográfica — idêntica nos dois temas.
+   No tema claro ela funciona como âncora visual antes do rodapé. */
+.cta-final {
+  /* Como a faixa é sempre escura, redefinimos os tokens de cor só aqui.
+     Custom properties são herdadas, então todo o conteúdo desta seção
+     (título, texto, eyebrow, réguas) fica correto nos dois temas sem
+     precisar de uma regra por elemento. */
+  --titulo: #ffffff;
+  --texto: #e8eaed;
+  --texto-suave: #c3c9d4;
+  --texto-fraco: #98a1af;
+  --azul-claro: #7fb4ff;
+  --linha: rgba(255, 255, 255, 0.14);
+  --linha-forte: rgba(255, 255, 255, 0.22);
+
+  position: relative;
+  z-index: 1;
+  padding-block: clamp(6rem, 14vw, 10rem);
+  overflow: hidden;
+  background: #060c18;
+  text-align: center;
+}
+
+/* Foto de fundo cobrindo a faixa inteira */
+.cta-foto {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 60%;
+}
+
+/* Véu: escurece a foto e injeta o azul da marca.
+   Sem ele o texto branco não teria contraste garantido sobre o céu do pôr do sol. */
+.cta-veu {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 90% at 50% 100%, rgba(27, 111, 224, 0.45), transparent 62%),
+    linear-gradient(180deg, rgba(6, 12, 24, 0.9) 0%, rgba(6, 12, 24, 0.76) 45%, rgba(6, 12, 24, 0.94) 100%);
+  pointer-events: none;
+}
+
+/* Rosa dos ventos gigante como marca d'água, cortada pelas bordas */
+.cta-rosa {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+  width: min(120%, 620px);
+  height: auto;
+  color: #ffffff;
+  opacity: 0.07;
+  pointer-events: none;
+}
+
+.cta-final-interno {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cta-final-titulo {
+  margin-top: 1.5rem;
+  font-size: clamp(2.25rem, 6.5vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  line-height: 1;
+  color: var(--titulo);
+  max-width: 16ch;
+}
+
+.cta-final-texto {
+  margin-top: 1.5rem;
+  max-width: 46ch;
+  font-size: clamp(1rem, 1.6vw, 1.1875rem);
+  color: var(--texto-suave);
+}
+
+.cta-final-acoes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.25rem;
+  margin-top: 2.75rem;
+}
+
+.btn-cta-final {
+  padding: 1.25rem 2.25rem;
+  font-size: 1.0625rem;
+  box-shadow: 0 16px 44px -16px rgba(27, 111, 224, 0.9);
+}
+
+.cta-final-numero {
+  font-family: var(--fonte-mono);
+  font-size: var(--t-pequeno);
+  letter-spacing: 0.16em;
+  color: var(--texto-fraco);
+}
+
+.cta-final-obs {
+  margin-top: 2rem;
+  font-size: var(--t-pequeno);
+  color: var(--texto-fraco);
+}
+
+@media (min-width: 640px) {
+  .cta-final-acoes {
+    flex-direction: row;
+    gap: 1.75rem;
+  }
+}

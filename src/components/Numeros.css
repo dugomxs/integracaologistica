@@ -1,0 +1,81 @@
+/* ================================ NÚMEROS ================================ */
+
+.numeros {
+  position: relative;
+  background:
+    radial-gradient(ellipse 70% 100% at 50% 0%, rgba(27, 111, 224, 0.1), transparent 70%),
+    var(--fundo-2);
+  border-block: 1px solid var(--linha);
+}
+
+.numeros-grade {
+  display: grid;
+  gap: 2.5rem 1.5rem;
+}
+
+.numero {
+  position: relative;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--linha-forte);
+}
+
+/* Marca azul curta sobre a régua de cada número */
+.numero::before {
+  content: '';
+  position: absolute;
+  top: -1px;
+  left: 0;
+  width: 42px;
+  height: 2px;
+  background: var(--azul);
+}
+
+.numero-valor {
+  display: flex;
+  align-items: baseline;
+  font-family: var(--fonte-display);
+  font-size: clamp(3rem, 7vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.055em;
+  color: var(--titulo);
+}
+
+.numero-sufixo {
+  font-style: normal;
+  font-size: 0.5em;
+  font-weight: 700;
+  color: var(--azul-claro);
+  margin-left: 0.08em;
+}
+
+.numero-rotulo {
+  margin-top: 0.875rem;
+  font-family: var(--fonte-display);
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  color: var(--texto);
+}
+
+.numero-detalhe {
+  margin-top: 0.25rem;
+  font-family: var(--fonte-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--texto-fraco);
+}
+
+@media (min-width: 600px) {
+  .numeros-grade {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1000px) {
+  .numeros-grade {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+}

@@ -1,0 +1,172 @@
+/* =============================== SEGMENTOS =============================== */
+
+.segmentos-grade {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.segmento {
+  /* Guardado numa variável para a foto poder "sangrar" até a borda do cartão */
+  --pad: clamp(1.75rem, 3.5vw, 2.75rem);
+  display: flex;
+  flex-direction: column;
+  padding: var(--pad);
+}
+
+/* --- Foto do segmento --- */
+.segmento-foto {
+  position: relative;
+  /* Margem negativa: a imagem encosta nas bordas apesar do padding do cartão */
+  margin: calc(var(--pad) * -1) calc(var(--pad) * -1) 2.25rem;
+}
+
+.segmento-foto-mascara {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  background: var(--fundo-3);
+}
+
+.segmento-foto img {
+  width: 100%;
+  height: clamp(190px, 26vw, 260px);
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-saida);
+  will-change: transform;
+}
+
+.segmento:hover .segmento-foto img {
+  transform: scale(1.05);
+}
+
+/* Véu escuro na base: garante contraste do índice e do ícone sobre a foto,
+   independentemente do que aparece na imagem. */
+.segmento-foto-mascara::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(6, 12, 24, 0.55) 0%,
+    rgba(6, 12, 24, 0.12) 42%,
+    rgba(6, 12, 24, 0.72) 100%
+  );
+  pointer-events: none;
+}
+
+/* Índice "01" / "02" sobre a foto */
+.segmento-indice {
+  position: absolute;
+  top: 0.75rem;
+  right: 1.125rem;
+  z-index: 1;
+  font-family: var(--fonte-display);
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: rgba(255, 255, 255, 0.28);
+  pointer-events: none;
+  transition: color 0.45s var(--ease-suave);
+}
+
+.segmento:hover .segmento-indice {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Ícone flutuando sobre a base da foto */
+.segmento-icone {
+  position: absolute;
+  left: var(--pad);
+  bottom: -22px;
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  color: var(--sobre-cor);
+  background: var(--azul);
+  border-radius: var(--raio);
+  box-shadow: 0 8px 20px -8px rgba(6, 12, 24, 0.65);
+  transition: transform 0.45s var(--ease-saida);
+}
+
+.segmento:hover .segmento-icone {
+  transform: translateY(-3px);
+}
+
+.segmento-nome {
+  font-size: clamp(1.75rem, 3.4vw, 2.25rem);
+  color: var(--titulo);
+}
+
+.segmento-chamada {
+  margin-top: 0.75rem;
+  font-family: var(--fonte-display);
+  font-size: clamp(1rem, 1.6vw, 1.125rem);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  color: var(--azul-claro);
+}
+
+.segmento-descricao {
+  margin-top: 1rem;
+  color: var(--texto-suave);
+  font-size: 1rem;
+}
+
+.segmento-beneficios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--linha);
+}
+
+.segmento-beneficios li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--texto);
+}
+
+.segmento-beneficios svg {
+  flex-shrink: 0;
+  margin-top: 5px;
+  color: var(--azul);
+}
+
+.segmento-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  margin-top: auto;
+  padding-top: 2rem;
+  font-family: var(--fonte-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--titulo);
+  transition: color 0.3s var(--ease-suave);
+}
+
+.segmento-cta .seta {
+  transition: transform 0.4s var(--ease-saida);
+}
+
+.segmento-cta:hover {
+  color: var(--azul-claro);
+}
+
+.segmento-cta:hover .seta {
+  transform: translateX(6px);
+}
+
+@media (min-width: 880px) {
+  .segmentos-grade {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}

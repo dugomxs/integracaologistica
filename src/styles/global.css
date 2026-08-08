@@ -1,0 +1,513 @@
+/* =============================================================================
+   INTEGRAÇÃO LOGÍSTICA — SISTEMA DE DESIGN
+   Estética: instrumento de navegação. Hairlines de precisão, azul elétrico
+   como sinal, rosa dos ventos como motif.
+
+   TEMAS
+   -----
+   O tema claro é o padrão e vive no :root. O escuro é ativado por
+   [data-tema="escuro"] no <html>, redefinindo APENAS os tokens de cor —
+   nenhum componente precisa saber qual tema está ativo.
+
+   Regra da casa: todo componente consome estes tokens. Nenhuma cor
+   literal (#fff, rgba(255,255,255,…)) fora deste bloco, senão o tema quebra.
+   ============================================================================= */
+
+:root {
+  color-scheme: light;
+
+  /* --- Cores: fundo --- */
+  --fundo: #ffffff;
+  --fundo-2: #f4f6fa; /* faixas destacadas (seção de números) */
+  --fundo-3: #eef1f7;
+  --superficie: #ffffff; /* topo do gradiente dos cartões */
+  --superficie-2: #f7f9fc;
+
+  /* --- Cores: marca --- */
+  --azul: #1b6fe0; /* fundo de botão — 4,8:1 com texto branco */
+  --azul-forte: #1559b8;
+  --azul-claro: #1257b8; /* acentos em TEXTO — 6,8:1 sobre o fundo claro */
+  --azul-brilho: #1b6fe0;
+  --azul-vidro: rgba(27, 111, 224, 0.07);
+
+  /* --- Cores: texto --- */
+  --titulo: #0b1220;
+  --texto: #384252; /* 10,1:1 */
+  --texto-suave: #55606f; /* 6,4:1 */
+  --texto-fraco: #626c7a; /* 5,3:1 — ainda AA em corpo pequeno */
+
+  /* --- Linhas --- */
+  --linha: rgba(11, 18, 32, 0.1);
+  --linha-forte: rgba(11, 18, 32, 0.18);
+  --linha-azul: rgba(27, 111, 224, 0.32);
+
+  /* --- Atmosfera --- */
+  --textura: rgba(11, 18, 32, 0.035); /* grid topográfico do fundo */
+  --fundo-blur: rgba(255, 255, 255, 0.78); /* header ao rolar */
+  --aura: rgba(27, 111, 224, 0.13); /* brilhos radiais */
+  --sombra-cartao: 0 1px 2px rgba(11, 18, 32, 0.05), 0 12px 28px -20px rgba(11, 18, 32, 0.3);
+  --sombra-flutuante: 0 10px 30px -8px rgba(11, 18, 32, 0.35);
+
+  /* Texto sobre superfícies coloridas (botão azul, botão verde, seleção).
+     Fixo nos dois temas: o fundo é sempre colorido, nunca o fundo da página. */
+  --sobre-cor: #ffffff;
+
+  /* Degradê da segunda linha do hero.
+     Fica todo dentro da família do azul: misturar o azul com a cor do título
+     faz a palavra "virar de cor" no meio, e o olho lê isso como defeito.
+     A parada mais clara (#2b7ef2) dá 3,9:1 sobre o fundo — acima do mínimo
+     de 3:1 exigido para texto grande. */
+  --grad-titulo: linear-gradient(100deg, #2b7ef2 0%, #1b6fe0 42%, #0f4ea8 100%);
+
+  /* --- Tipografia --- */
+  --fonte-display: 'Sora', 'Segoe UI', system-ui, sans-serif;
+  --fonte-corpo: 'DM Sans', 'Segoe UI', system-ui, sans-serif;
+  --fonte-mono: ui-monospace, 'SF Mono', 'Roboto Mono', Menlo, monospace;
+
+  /* --- Escala fluida (mobile-first, cresce com a viewport) --- */
+  /* Teto calibrado para "Entregando" (10 caracteres em Sora 800) caber
+     na coluna do hero sem quebrar nem transbordar. */
+  --t-hero: clamp(2.75rem, 7.8vw, 7rem);
+  --t-secao: clamp(2rem, 5.2vw, 3.75rem);
+  --t-titulo: clamp(1.35rem, 2.6vw, 1.75rem);
+  --t-corpo: clamp(1rem, 1.15vw, 1.0625rem);
+  --t-pequeno: 0.875rem;
+  --t-micro: 0.6875rem;
+
+  /* --- Ritmo --- */
+  --gutter: clamp(1.25rem, 5vw, 4.5rem);
+  --largura-max: 1280px;
+  --espaco-secao: clamp(5.5rem, 12vw, 11rem);
+
+  /* --- Curvas de animação --- */
+  --ease-saida: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-suave: cubic-bezier(0.4, 0, 0.2, 1);
+
+  --raio: 4px;
+  --raio-g: 10px;
+}
+
+/* =============================================================================
+   TEMA ESCURO
+   Só cores. Tipografia, ritmo e curvas de animação permanecem do :root.
+   ============================================================================= */
+
+[data-tema='escuro'] {
+  color-scheme: dark;
+
+  --fundo: #0a0a0a;
+  --fundo-2: #0f1012;
+  --fundo-3: #141517;
+  --superficie: #17191c;
+  --superficie-2: #1d2024;
+
+  --azul: #1b6fe0;
+  --azul-forte: #1559b8;
+  --azul-claro: #4e9dff; /* 7,2:1 sobre o grafite */
+  --azul-brilho: #9cc6ff;
+  --azul-vidro: rgba(27, 111, 224, 0.12);
+
+  --titulo: #ffffff;
+  --texto: #e8eaed;
+  --texto-suave: #a8aeb8;
+  --texto-fraco: #6f7681; /* 4,7:1 */
+
+  --linha: rgba(255, 255, 255, 0.09);
+  --linha-forte: rgba(255, 255, 255, 0.16);
+  --linha-azul: rgba(78, 157, 255, 0.35);
+
+  /* No escuro o branco funciona como brilho no início da palavra, e não como
+     "outra cor", porque é a mesma cor da linha de cima. */
+  --grad-titulo: linear-gradient(100deg, #ffffff 8%, #4e9dff 55%, #1b6fe0 95%);
+
+  --textura: rgba(255, 255, 255, 0.022);
+  --fundo-blur: rgba(10, 10, 10, 0.72);
+  --aura: rgba(27, 111, 224, 0.2);
+  /* No escuro os cartões se separam do fundo pelo próprio gradiente. */
+  --sombra-cartao: none;
+  --sombra-flutuante: 0 10px 30px -8px rgba(0, 0, 0, 0.7);
+}
+
+/* A troca de tema é instantânea nos elementos que já animam cor, mas fundo e
+   borda precisam de transição própria para não "piscar". */
+body,
+.cartao,
+.cabecalho,
+.numeros,
+.cta-final,
+.rodape {
+  transition: background-color 0.35s var(--ease-suave), border-color 0.35s var(--ease-suave);
+}
+
+/* --- Reset --- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Compensa o header fixo ao navegar por âncoras */
+  scroll-padding-top: 96px;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--fundo);
+  color: var(--texto);
+  font-family: var(--fonte-corpo);
+  font-size: var(--t-corpo);
+  line-height: 1.65;
+  font-feature-settings: 'kern' 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Textura de fundo: grid topográfico + vinheta radial.
+   Fixo e em ::before para não repintar durante o scroll. */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(var(--textura) 1px, transparent 1px),
+    linear-gradient(90deg, var(--textura) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, #000 20%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 100% 70% at 50% 0%, #000 20%, transparent 80%);
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+::selection {
+  background: var(--azul);
+  color: var(--sobre-cor);
+}
+
+/* <main> recebe foco pelo skip-link, mas não deve desenhar contorno próprio */
+main:focus {
+  outline: none;
+}
+
+/* Foco visível e consistente para navegação por teclado */
+:focus-visible {
+  outline: 2px solid var(--azul-claro);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* =============================================================================
+   TIPOGRAFIA
+   ============================================================================= */
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--fonte-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-wrap: balance;
+}
+
+.titulo-secao {
+  font-size: var(--t-secao);
+  color: var(--titulo);
+  max-width: 18ch;
+}
+
+.texto-secao {
+  color: var(--texto-suave);
+  max-width: 52ch;
+  font-size: clamp(1rem, 1.3vw, 1.125rem);
+}
+
+/* Rótulo monoespaçado — referência a manifesto de carga / painel de instrumento */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.625rem;
+  font-family: var(--fonte-mono);
+  font-size: var(--t-micro);
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 22px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.7;
+}
+
+/* Numerais tabulares para contadores e índices */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* =============================================================================
+   LAYOUT
+   ============================================================================= */
+
+.container {
+  width: 100%;
+  max-width: var(--largura-max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.secao {
+  position: relative;
+  z-index: 1;
+  padding-block: var(--espaco-secao);
+}
+
+/* Cabeçalho padrão de seção */
+.secao-cabecalho {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  margin-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+@media (min-width: 900px) {
+  .secao-cabecalho {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: end;
+    gap: 3rem;
+  }
+}
+
+/* Régua fina que separa seções */
+.regua {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--linha-forte) 15%, var(--linha-forte) 85%, transparent);
+}
+
+/* =============================================================================
+   BOTÕES
+   ============================================================================= */
+
+.btn {
+  --btn-bg: var(--azul);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 1.75rem;
+  font-family: var(--fonte-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--sobre-cor);
+  background: var(--btn-bg);
+  border-radius: var(--raio);
+  overflow: hidden;
+  isolation: isolate;
+  white-space: nowrap;
+  transition: transform 0.35s var(--ease-saida), box-shadow 0.35s var(--ease-saida);
+  will-change: transform;
+}
+
+/* Brilho que atravessa o botão no hover — só transform, sem reflow */
+.btn::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.28) 50%, transparent 80%);
+  transform: translateX(-110%);
+  transition: transform 0.7s var(--ease-saida);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 32px -10px rgba(27, 111, 224, 0.75);
+}
+
+.btn:hover::after {
+  transform: translateX(110%);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn .seta {
+  transition: transform 0.35s var(--ease-saida);
+}
+
+.btn:hover .seta {
+  transform: translateX(4px);
+}
+
+/* Variante secundária — contorno */
+.btn-contorno {
+  color: var(--texto);
+  background: transparent;
+  border: 1px solid var(--linha-forte);
+}
+
+.btn-contorno:hover {
+  color: var(--titulo);
+  border-color: var(--linha-azul);
+  background: var(--azul-vidro);
+  box-shadow: none;
+}
+
+/* Variante compacta — header */
+.btn-sm {
+  padding: 0.6875rem 1.125rem;
+  font-size: 0.875rem;
+}
+
+/* =============================================================================
+   CARTÕES
+   ============================================================================= */
+
+.cartao {
+  position: relative;
+  padding: clamp(1.5rem, 2.5vw, 2rem);
+  background: linear-gradient(160deg, var(--superficie), var(--fundo-2));
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-g);
+  box-shadow: var(--sombra-cartao);
+  overflow: hidden;
+  transition: border-color 0.4s var(--ease-suave), transform 0.4s var(--ease-saida),
+    box-shadow 0.4s var(--ease-suave);
+  will-change: transform;
+}
+
+/* Halo azul que segue o cursor (posição via --mx/--my no JS) */
+.cartao::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    340px circle at var(--mx, 50%) var(--my, 0%),
+    rgba(27, 111, 224, 0.16),
+    transparent 70%
+  );
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-suave);
+  pointer-events: none;
+}
+
+.cartao:hover {
+  border-color: var(--linha-azul);
+  transform: translateY(-4px);
+}
+
+.cartao:hover::before {
+  opacity: 1;
+}
+
+/* =============================================================================
+   ACESSIBILIDADE
+   ============================================================================= */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Link "pular para conteúdo" — primeiro item no tab */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 999;
+  padding: 0.75rem 1.25rem;
+  background: var(--azul);
+  color: var(--sobre-cor);
+  border-radius: var(--raio);
+  font-weight: 600;
+  transition: top 0.2s var(--ease-suave);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Estado inicial dos elementos revelados no scroll.
+   O GSAP remove isso; se o JS falhar ou o usuário preferir menos movimento,
+   .sem-animacao no <html> mantém tudo visível. */
+[data-revelar] {
+  opacity: 0;
+}
+
+html.sem-animacao [data-revelar] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* =============================================================================
+   PREFERS-REDUCED-MOTION
+   Desliga scroll suave e todas as transições/animações decorativas.
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  [data-revelar] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#FFFFFF" />
+
+    <!--
+      Tema: o claro é o padrão. Este script roda ANTES do CSS e do React,
+      de forma síncrona, para aplicar o tema salvo já no primeiro paint —
+      sem ele o visitante que escolheu o escuro veria um flash branco.
+      Mantenha inline e no topo do <head>.
+    -->
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem('integracao-tema') === 'escuro') {
+            document.documentElement.setAttribute('data-tema', 'escuro')
+            document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0A0A0A')
+          }
+        } catch (e) {
+          /* localStorage bloqueado — segue no tema claro */
+        }
+      })()
+    </script>
+
+    <title>Transportadora Integração Logística — Transporte de Cargas para Agro e Indústria</title>
+    <meta
+      name="description"
+      content="Transporte rodoviário de cargas para o agronegócio e para a indústria. Grãos, insumos, transferências e produto acabado com prazo cumprido e carga rastreada. Solicite sua cotação pelo WhatsApp."
+    />
+    <meta name="author" content="Transportadora Integração Logística" />
+    <meta name="robots" content="index, follow" />
+    <!-- TODO CLIENTE: trocar pelo domínio final -->
+    <link rel="canonical" href="https://www.integracaologistica.com.br/" />
+
+    <!-- Open Graph / redes sociais -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content="Transportadora Integração Logística" />
+    <meta property="og:title" content="Integração Logística — Entregando Resultados" />
+    <meta
+      property="og:description"
+      content="Fretes para o agronegócio e para a indústria com rota planejada, prazo cumprido e carga rastreada."
+    />
+    <meta property="og:url" content="https://www.integracaologistica.com.br/" />
+    <meta property="og:image" content="https://www.integracaologistica.com.br/og-image.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Integração Logística — Entregando Resultados" />
+    <meta
+      name="twitter:description"
+      content="Fretes para o agronegócio e para a indústria com rota planejada e carga rastreada."
+    />
+    <meta name="twitter:image" content="https://www.integracaologistica.com.br/og-image.jpg" />
+
+    <!-- Caminhos relativos: o site também precisa funcionar servido de uma
+         subpasta (GitHub Pages publica em /integracaologistica/). -->
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="apple-touch-icon" href="./favicon.svg" />
+
+    <!-- Fontes: Sora (títulos) + DM Sans (corpo). Carregadas sem bloquear a renderização. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Sora:wght@400;600;700;800&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Sora:wght@400;600;700;800&display=swap"
+      media="print"
+      onload="this.media='all'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Sora:wght@400;600;700;800&display=swap"
+      />
+    </noscript>
+
+    <!--
+      JSON-LD — dados estruturados de negócio local.
+      TODO CLIENTE: atualizar telefone, endereço, coordenadas e CNPJ com os dados reais.
+      Mantenha em sincronia com src/config/site.js
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "MovingCompany",
+        "@id": "https://www.integracaologistica.com.br/#organizacao",
+        "name": "Transportadora Integração Logística",
+        "alternateName": "Integração Logística",
+        "slogan": "Entregando Resultados",
+        "description": "Transporte rodoviário de cargas para o agronegócio e para a indústria: grãos, insumos, fertilizantes, transferências entre plantas e produto acabado.",
+        "url": "https://www.integracaologistica.com.br/",
+        "telephone": "+5562998115649",
+        "email": "contato@integracaologistica.com.br",
+        "priceRange": "$$",
+        "image": "https://www.integracaologistica.com.br/og-image.jpg",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rua Exemplo, 000 — Bairro",
+          "addressLocality": "Cidade",
+          "addressRegion": "UF",
+          "postalCode": "00000-000",
+          "addressCountry": "BR"
+        },
+        "areaServed": [
+          { "@type": "Country", "name": "Brasil" },
+          { "@type": "City", "name": "Sorriso", "addressRegion": "MT" },
+          { "@type": "City", "name": "Canarana", "addressRegion": "MT" },
+          { "@type": "City", "name": "Confresa", "addressRegion": "MT" },
+          { "@type": "City", "name": "Rondonópolis", "addressRegion": "MT" },
+          { "@type": "City", "name": "Anápolis", "addressRegion": "GO" },
+          { "@type": "City", "name": "Miritituba", "addressRegion": "PA" },
+          { "@type": "City", "name": "Paranaguá", "addressRegion": "PR" }
+        ],
+        "location": [
+          {
+            "@type": "Place",
+            "name": "Filial Sorriso",
+            "address": { "@type": "PostalAddress", "addressLocality": "Sorriso", "addressRegion": "MT", "addressCountry": "BR" }
+          },
+          {
+            "@type": "Place",
+            "name": "Filial Canarana",
+            "address": { "@type": "PostalAddress", "addressLocality": "Canarana", "addressRegion": "MT", "addressCountry": "BR" }
+          },
+          {
+            "@type": "Place",
+            "name": "Filial Confresa",
+            "address": { "@type": "PostalAddress", "addressLocality": "Confresa", "addressRegion": "MT", "addressCountry": "BR" }
+          },
+          {
+            "@type": "Place",
+            "name": "Filial Rondonópolis",
+            "address": { "@type": "PostalAddress", "addressLocality": "Rondonópolis", "addressRegion": "MT", "addressCountry": "BR" }
+          },
+          {
+            "@type": "Place",
+            "name": "Filial Anápolis",
+            "address": { "@type": "PostalAddress", "addressLocality": "Anápolis", "addressRegion": "GO", "addressCountry": "BR" }
+          },
+          {
+            "@type": "Place",
+            "name": "Filial Miritituba",
+            "address": { "@type": "PostalAddress", "addressLocality": "Miritituba", "addressRegion": "PA", "addressCountry": "BR" }
+          },
+          {
+            "@type": "Place",
+            "name": "Filial Paranaguá",
+            "address": { "@type": "PostalAddress", "addressLocality": "Paranaguá", "addressRegion": "PR", "addressCountry": "BR" }
+          }
+        ],
+        "sameAs": ["https://instagram.com/integracaologistica"],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+            "opens": "08:00",
+            "closes": "18:00"
+          }
+        ],
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Transporte de cargas para o agronegócio",
+              "description": "Transporte de grãos, farelo, insumos e fertilizantes entre fazendas, cooperativas, armazéns e portos."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Transporte de cargas industriais",
+              "description": "Transferências entre plantas e centros de distribuição, matéria-prima e produto acabado em carga fechada."
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
