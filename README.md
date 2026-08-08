@@ -37,6 +37,7 @@ Quase tudo que o cliente precisa mudar está em **um único arquivo**:
 | `hero`         | Título, subtítulo, botões e selos da primeira dobra          |
 | `segmentos`    | Blocos de Agronegócio e Indústrias                           |
 | `servicos`     | As três frentes de serviço                                   |
+| `sobre`        | Quem somos, posicionamento e matriz                          |
 | `diferenciais` | Cards de diferenciais                                        |
 | `processo`     | Passo a passo "Como funciona"                                |
 | `numeros`      | Estatísticas dos contadores (`prefixo`, `sufixo`, `decimais`) |
@@ -153,6 +154,12 @@ Esse PDF fica **fora de `public/`** de propósito: qualquer arquivo em `public/`
 traz telefones e e-mails pessoais da equipe. Para disponibilizá-lo no site,
 mova-o para `public/` conscientemente.
 
+Em `documentos/logo-original-branco.png` está o logo da empresa extraído do PDF
+(1341×470, com transparência). **Não está em uso**: é uma versão só em branco,
+que desaparece no tema claro, e é raster. O site usa a rosa dos ventos em SVG,
+que funciona nos dois temas e escala sem perder nitidez. Para adotar o logo
+original, seria preciso uma versão escura — de preferência vetorial.
+
 ### Itens pendentes fora do `site.js`
 
 - **`index.html`** — meta tags, URL canônica e o JSON-LD de negócio local
@@ -179,6 +186,7 @@ scripts/gerar-mapa.mjs      ← baixa e processa a malha do IBGE
 │   ├── Hero.jsx            ← primeira dobra
 │   ├── Segmentos.jsx       ← Agronegócio e Indústrias
 │   ├── Servicos.jsx        ← as três frentes de serviço
+│   ├── Sobre.jsx           ← quem somos + matriz
 │   ├── Diferenciais.jsx    ← grade de cards
 │   ├── Processo.jsx        ← passo a passo + rota desenhada no scroll
 │   ├── Numeros.jsx         ← contadores animados

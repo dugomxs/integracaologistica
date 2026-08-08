@@ -86,6 +86,15 @@ const desenhos = {
       <path d="m9 12 2.2 2.2L15.5 10" />
     </>
   ),
+  // Equipe / parceria de longo prazo
+  equipe: (
+    <>
+      <circle cx="9" cy="8" r="3.2" />
+      <path d="M3 20v-1.2c0-2.2 2.7-3.8 6-3.8s6 1.6 6 3.8V20" />
+      <path d="M16.2 5.3a3.2 3.2 0 0 1 0 5.9" />
+      <path d="M18 15.4c1.8.5 3 1.7 3 3.4V20" />
+    </>
+  ),
   // Setas e navegação
   seta: <path d="M5 12h13m0 0-5.5-5.5M18 12l-5.5 5.5" />,
   setaBaixo: <path d="M12 5v13m0 0 5.5-5.5M12 18l-5.5-5.5" />,

@@ -71,11 +71,14 @@ export const redes = {
 /* -----------------------------------------------------------------------------
    4. NAVEGAÇÃO (âncoras do menu)
    ----------------------------------------------------------------------------- */
+/* Rótulos curtos de propósito: o header também acomoda o seletor de tema e
+   o CTA. "Diferenciais" ficou fora da barra — a seção continua na página,
+   logo abaixo de Serviços, no caminho natural da leitura. */
 export const navegacao = [
   { id: 'segmentos', rotulo: 'Segmentos' },
   { id: 'servicos', rotulo: 'Serviços' },
-  { id: 'diferenciais', rotulo: 'Diferenciais' },
-  { id: 'processo', rotulo: 'Como funciona' },
+  { id: 'processo', rotulo: 'Processo' },
+  { id: 'sobre', rotulo: 'Quem somos' },
   { id: 'operacao', rotulo: 'Frota' },
   { id: 'atuacao', rotulo: 'Atuação' },
 ]
@@ -169,48 +172,68 @@ export const servicos = {
 /* -----------------------------------------------------------------------------
    7. DIFERENCIAIS
    ----------------------------------------------------------------------------- */
+/* Textos baseados na apresentação institucional — é a linguagem da própria
+   empresa sobre os seus compromissos, não uma lista genérica de setor. */
 export const diferenciais = {
   titulo: 'Por que a Integração',
   descricao:
-    'Frete não é só deslocar carga. É garantir que ela chegue quando e como foi combinado.',
+    'Segurança, qualidade e produtividade não são metas por aqui. São compromissos diários.',
   itens: [
     {
-      icone: 'relogio',
-      titulo: 'Pontualidade',
+      icone: 'escudo',
+      titulo: 'Segurança e qualidade',
       texto:
-        'Prazo definido na cotação e cumprido na entrega. Sem surpresa no meio do caminho.',
-    },
-    {
-      icone: 'radar',
-      titulo: 'Rastreabilidade',
-      texto:
-        'Você acompanha a posição da carga e recebe atualização em cada etapa da rota.',
-    },
-    {
-      icone: 'caminhao',
-      titulo: 'Frota adequada',
-      texto:
-        'Equipamento certo para cada carga: graneleiro, sider, carga seca e conjuntos de alta capacidade.',
+        'Compromisso assumido em cada entrega, com seguro por carga de até R$ 1,5 milhão.',
     },
     {
       icone: 'bussola',
-      titulo: 'Cobertura',
+      titulo: 'Flexibilidade é o padrão',
       texto:
-        'Rotas em todo o território nacional, com foco nos principais corredores do agro e da indústria.',
+        'Nossa equipe se adapta com rapidez e precisão às exigências operacionais de cada parceiro.',
+    },
+    {
+      icone: 'relogio',
+      titulo: 'Mínimo impacto na sua rotina',
+      texto:
+        'Atuamos de forma integrada: o máximo de impacto na eficiência logística, o mínimo na sua operação.',
     },
     {
       icone: 'headset',
-      titulo: 'Atendimento próximo',
+      titulo: 'Atendimento consultivo',
       texto:
-        'Contato direto no WhatsApp com quem resolve. Sem fila, sem protocolo, sem robô.',
+        'Focado na real necessidade de cada cliente — não num pacote pronto de prateleira.',
     },
     {
-      icone: 'escudo',
-      titulo: 'Carga segurada',
+      icone: 'caminhao',
+      titulo: 'Frota própria e agregados',
       texto:
-        'Operação documentada e coberta, com gerenciamento de risco em todo o trajeto.',
+        '35 conjuntos próprios e uma rede de mais de 300 agregados para escalar no pico da safra.',
+    },
+    {
+      icone: 'equipe',
+      titulo: 'Relações de longo prazo',
+      texto:
+        'Cada operação é conduzida com foco na excelência e na construção de parcerias duradouras.',
     },
   ],
+}
+
+/* -----------------------------------------------------------------------------
+   7.1 QUEM SOMOS
+   ----------------------------------------------------------------------------- */
+export const sobre = {
+  eyebrow: 'Quem somos',
+  // Linha de posicionamento da apresentação institucional
+  citacao: 'Conectamos caminhos, integramos soluções e entregamos resultados.',
+  paragrafos: [
+    'A operação começou com foco no agronegócio e há três anos transporta com segurança e pontualidade. Hoje são sete filiais em Mato Grosso, Goiás, Pará e Paraná, atendendo todo o Brasil.',
+    'O crescimento veio de inovação e foco no cliente — e de uma equipe com expertise logística, que entende a exigência de cada carga antes de colocar o veículo na estrada.',
+  ],
+  matriz: {
+    titulo: 'Matriz em Anápolis-GO',
+    texto: 'Time de 20 profissionais distribuídos em cinco áreas:',
+    departamentos: ['Comercial', 'Operações', 'Mesa de Frete', 'Financeiro', 'Recursos Humanos'],
+  },
 }
 
 /* -----------------------------------------------------------------------------

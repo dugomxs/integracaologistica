@@ -5,6 +5,7 @@ import Segmentos from './components/Segmentos'
 import Servicos from './components/Servicos'
 import Diferenciais from './components/Diferenciais'
 import Processo from './components/Processo'
+import Sobre from './components/Sobre'
 import Numeros from './components/Numeros'
 import Galeria from './components/Galeria'
 import Atuacao from './components/Atuacao'
@@ -42,6 +43,7 @@ export default function App() {
         <Servicos />
         <Diferenciais />
         <Processo />
+        <Sobre />
         <Numeros />
         <Galeria />
         <Atuacao />

@@ -251,9 +251,9 @@
 }
 
 /* --- Breakpoints --- */
-/* 980px e não 860: com 5 âncoras no menu, abaixo disso o header fica
+/* 1060px: com 6 âncoras + seletor de tema + CTA, abaixo disso o header fica
    apertado demais e o menu mobile atende melhor. */
-@media (min-width: 980px) {
+@media (min-width: 1060px) {
   .menu-desktop {
     display: flex;
   }
