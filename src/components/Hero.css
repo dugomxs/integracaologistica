@@ -269,7 +269,17 @@
 }
 
 /* --- Breakpoints --- */
-@media (min-width: 768px) {
+
+/* O indicador de rolagem fica no centro horizontal da viewport — que, no
+   desktop, cai DENTRO da coluna de texto — e ocupa cerca de 125px na base.
+   Por isso só aparece quando há altura sobrando para ele ficar abaixo do
+   conteúdo; em telas baixas ele se sobrepunha aos selos.
+   O padding extra reserva essa faixa. */
+@media (min-width: 768px) and (min-height: 880px) {
+  .hero {
+    padding-bottom: clamp(10rem, 17vh, 13rem);
+  }
+
   .hero-rolar {
     display: flex;
   }
