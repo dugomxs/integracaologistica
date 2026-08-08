@@ -19,6 +19,12 @@
 }
 
 .cabecalho-interno {
+  /* O painel mobile é filho do header e é `position: fixed`. Sem posicionamento
+     explícito aqui, este bloco seria pintado POR BAIXO do painel dentro do
+     contexto de empilhamento do header — o que escondia a logo e, pior, o
+     botão de fechar. */
+  position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -165,15 +171,23 @@
 .menu-mobile {
   position: fixed;
   inset: 0;
-  z-index: 99;
+  /* z-index 0 mantém o painel abaixo do .cabecalho-interno (z-index 1) e,
+     ainda assim, acima de toda a página — o header inteiro é z-index 100. */
+  z-index: 0;
   /* Fechado por padrão. O atributo `hidden` sozinho não bastaria:
      a regra de classe teria especificidade maior que o estilo do agente. */
   display: none;
   flex-direction: column;
-  justify-content: center;
-  gap: 2.5rem;
-  padding: 6rem var(--gutter) 4rem;
+  /* flex-start + overflow: com 5 âncoras o conteúdo passa da tela em celular
+     baixo. Centralizado, o excesso ficaria inacessível — no flex centralizado
+     o overflow do topo não é alcançável pela rolagem. */
+  justify-content: flex-start;
+  gap: 1.75rem;
+  padding: 5.5rem var(--gutter) 2.5rem;
   background: var(--fundo);
+  overflow-y: auto;
+  /* Impede que a rolagem "vaze" para a página atrás do painel */
+  overscroll-behavior: contain;
 }
 
 .menu-mobile.aberto {
@@ -189,10 +203,13 @@
   display: flex;
   align-items: baseline;
   gap: 1rem;
-  padding-block: 1.125rem;
+  padding-block: 0.9375rem;
   font-family: var(--fonte-display);
-  font-size: clamp(1.75rem, 8vw, 2.5rem);
+  font-size: clamp(1.5rem, 6.8vw, 2.125rem);
   font-weight: 700;
+  /* O corpo usa 1.65; num display grande isso deixa as linhas soltas demais
+     e é o que fazia o menu não caber. */
+  line-height: 1.1;
   letter-spacing: -0.035em;
   color: var(--titulo);
   border-bottom: 1px solid var(--linha);
