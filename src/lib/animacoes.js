@@ -148,18 +148,23 @@ export function desenharRota(paths, gatilho, opcoes = {}) {
  * @param {object} [opcoes]
  */
 export function contar(elemento, valorFinal, opcoes = {}) {
-  const { duracao = 2, gatilho = elemento } = opcoes
+  const { duracao = 2, gatilho = elemento, decimais = 0 } = opcoes
   if (!elemento) return
 
   const estado = { valor: 0 }
-  const formatador = new Intl.NumberFormat('pt-BR')
+  // `decimais` permite exibir valores como "1,5" (usado em "R$ 1,5 mi"):
+  // escrever 1.500.000 por extenso não cabe na coluna.
+  const formatador = new Intl.NumberFormat('pt-BR', {
+    minimumFractionDigits: decimais,
+    maximumFractionDigits: decimais,
+  })
 
   gsap.to(estado, {
     valor: valorFinal,
     duration: duracao,
     ease: 'power2.out',
     onUpdate() {
-      elemento.textContent = formatador.format(Math.round(estado.valor))
+      elemento.textContent = formatador.format(estado.valor)
     },
     scrollTrigger: {
       trigger: gatilho,

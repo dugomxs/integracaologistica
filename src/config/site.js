@@ -13,15 +13,22 @@ export const empresa = {
   nome: 'Integração Logística',
   nomeCompleto: 'Transportadora Integração Logística',
   slogan: 'Entregando Resultados',
+  // Assinatura institucional usada pela empresa na apresentação comercial
+  tagline: 'Movimentando negócios, entregando confiança',
+  // Posicionamento da apresentação institucional
+  posicionamento: 'Conectamos caminhos, integramos soluções e entregamos resultados.',
   // TODO CLIENTE: substituir pelo CNPJ real
   cnpj: '00.000.000/0001-00',
-  // TODO CLIENTE: substituir pela cidade/UF da base operacional
-  cidade: 'Cidade',
-  uf: 'UF',
+  // Matriz, conforme apresentação institucional
+  cidade: 'Anápolis',
+  uf: 'GO',
+  // TODO CLIENTE: endereço e CEP da matriz
   endereco: 'Rua Exemplo, 000 — Bairro',
   cep: '00000-000',
-  email: 'contato@integracaologistica.com.br',
-  site: 'https://www.integracaologistica.com.br',
+  // Domínio dos e-mails na apresentação é .com (não .com.br)
+  // TODO CLIENTE: confirmar se existe um endereço genérico (contato@…)
+  email: 'eduardosoares@integracaologistica.com',
+  site: 'https://www.integracaologistica.com',
 }
 
 /* -----------------------------------------------------------------------------
@@ -66,6 +73,7 @@ export const redes = {
    ----------------------------------------------------------------------------- */
 export const navegacao = [
   { id: 'segmentos', rotulo: 'Segmentos' },
+  { id: 'servicos', rotulo: 'Serviços' },
   { id: 'diferenciais', rotulo: 'Diferenciais' },
   { id: 'processo', rotulo: 'Como funciona' },
   { id: 'operacao', rotulo: 'Frota' },
@@ -79,11 +87,11 @@ export const hero = {
   eyebrow: 'Transporte rodoviário de cargas',
   titulo: ['Entregando', 'Resultados'],
   subtitulo:
-    'Fretes para o agronegócio e para a indústria com rota planejada, prazo cumprido e carga rastreada do embarque à entrega.',
+    'Transporte para o agronegócio e para a indústria com frota própria, rede de agregados e seguro por carga. Segurança e pontualidade em cada entrega.',
   ctaPrimario: 'Solicitar Cotação',
   ctaSecundario: 'Ver segmentos',
-  // Selos de credibilidade exibidos abaixo do CTA
-  selos: ['Frota própria e agregada', 'Carga rastreada', 'Cobertura nacional'],
+  // Selos abaixo do CTA — todos verificáveis na apresentação institucional
+  selos: ['Frota própria e agregados', 'Seguro por carga até R$ 1,5 mi', 'Filiais em 4 estados'],
 }
 
 /* -----------------------------------------------------------------------------
@@ -101,12 +109,12 @@ export const segmentos = {
       nome: 'Agronegócio',
       chamada: 'Da lavoura ao armazém, no tempo da safra.',
       descricao:
-        'Movimentamos grãos, insumos e fertilizantes com janelas de coleta respeitadas e capacidade escalável no pico da safra.',
+        'A operação nasceu no agronegócio. Movimentamos grão, semente e insumo com frota própria e rede de agregados, das filiais em Mato Grosso ao destino.',
       beneficios: [
-        'Grãos, farelo e insumos agrícolas',
-        'Capacidade extra em período de safra',
-        'Atendimento a fazendas, cooperativas e armazéns',
-        'Documentação e romaneio em ordem',
+        'Soja, milho e gergelim',
+        'Sementes e fertilizantes',
+        'Frota própria e mais de 300 agregados',
+        'Filiais no centro da produção',
       ],
     },
     {
@@ -116,15 +124,46 @@ export const segmentos = {
       nome: 'Indústrias',
       chamada: 'Sua linha de produção não pode parar.',
       descricao:
-        'Transferências, matéria-prima e produto acabado com programação fixa, previsibilidade de prazo e comunicação direta com o time de logística.',
+        'Químicos, equipamentos e cargas que exigem controle. Atendimento consultivo, com a operação desenhada para causar o mínimo impacto na sua rotina.',
       beneficios: [
-        'Transferências entre plantas e CDs',
-        'Programação recorrente de embarques',
-        'Cargas fechadas e paletizadas',
-        'Interlocução direta com o gestor',
+        'Produtos químicos',
+        'Equipamentos e cargas especiais',
+        'Seguro por carga até R$ 1.500.000',
+        'Gestão e emissão de fretes',
       ],
     },
   ],
+}
+
+/* -----------------------------------------------------------------------------
+   6.1 SERVIÇOS — as três frentes descritas na apresentação institucional
+   ----------------------------------------------------------------------------- */
+export const servicos = {
+  eyebrow: 'O que fazemos',
+  titulo: 'Três formas de resolver o seu frete',
+  descricao:
+    'Da carga avulsa à operação de transporte inteira. Você escolhe até onde vai a nossa participação.',
+  itens: [
+    {
+      icone: 'radar',
+      nome: 'Gestão e emissão de fretes',
+      texto:
+        'Conectamos a sua carga à nossa rede de terceiros e conduzimos todo o processo, da aquisição à entrega.',
+    },
+    {
+      icone: 'headset',
+      nome: 'Terceirização de contratação',
+      texto:
+        'Assumimos as atividades operacionais da sua empresa de transporte, com equipe e processo já rodando.',
+    },
+    {
+      icone: 'caminhao',
+      nome: 'Transporte com frota própria',
+      texto:
+        'Nossos 35 conjuntos e mais de 300 agregados na estrada, sob nossa gestão do início ao fim.',
+    },
+  ],
+  rodape: 'Não sabe qual formato encaixa na sua operação? A gente ajuda a decidir.',
 }
 
 /* -----------------------------------------------------------------------------
@@ -215,14 +254,40 @@ export const processo = {
    sufixo → texto exibido depois do número (+, %, mil…)
    TODO CLIENTE: ajustar para os números reais da operação.
    ----------------------------------------------------------------------------- */
+/* Todos os valores vêm da apresentação institucional da empresa.
+   `prefixo` e `sufixo` cercam o número; o contador anima só o valor. */
 export const numeros = {
-  titulo: 'Números que sustentam a promessa',
-  descricao: 'Resultado de operação organizada e time que conhece a estrada.',
+  titulo: 'O tamanho da operação',
+  descricao:
+    'Três anos transportando com foco no agronegócio, com estrutura própria e capacidade para escalar na safra.',
   itens: [
-    { valor: 12, sufixo: '', rotulo: 'Anos na estrada', detalhe: 'desde a primeira rota' },
-    { valor: 8500, sufixo: '+', rotulo: 'Cargas entregues', detalhe: 'agro e indústria' },
-    { valor: 98, sufixo: '%', rotulo: 'Entregas no prazo', detalhe: 'índice de pontualidade' },
-    { valor: 24, sufixo: 'h', rotulo: 'Resposta de cotação', detalhe: 'em dias úteis' },
+    {
+      valor: 100000,
+      sufixo: ' t',
+      rotulo: 'Transportadas em 2024',
+      detalhe: 'volume movimentado no ano',
+    },
+    {
+      valor: 35,
+      sufixo: '',
+      rotulo: 'Conjuntos próprios',
+      detalhe: 'mais de 300 agregados',
+    },
+    {
+      // Exibido em milhões: "R$ 1.500.000" por extenso não cabe na coluna.
+      valor: 1.5,
+      decimais: 1,
+      prefixo: 'R$ ',
+      sufixo: ' mi',
+      rotulo: 'Seguro por carga',
+      detalhe: 'cobertura máxima',
+    },
+    {
+      valor: 7,
+      sufixo: '',
+      rotulo: 'Filiais',
+      detalhe: 'MT · GO · PA · PR',
+    },
   ],
 }
 

@@ -28,6 +28,16 @@
   color: var(--titulo);
 }
 
+/* Assinatura institucional da empresa, logo abaixo do slogan */
+.rodape-tagline {
+  margin-top: 0.375rem;
+  font-family: var(--fonte-mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--azul-claro);
+}
+
 .rodape-descricao {
   margin-top: 0.75rem;
   max-width: 32ch;

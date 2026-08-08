@@ -11,13 +11,21 @@ export default function Numeros() {
 
     // Cada contador é disparado pela própria seção, para que todos subam juntos.
     valoresRef.current.forEach((el, i) => {
-      contar(el, numeros.itens[i].valor, { duracao: 2.2, gatilho: escopo })
+      contar(el, numeros.itens[i].valor, {
+        duracao: 2.2,
+        gatilho: escopo,
+        decimais: numeros.itens[i].decimais ?? 0,
+      })
     })
   }, [])
 
   // Sem animação, o número já aparece formatado no HTML inicial.
   const reduzido = movimentoReduzido()
-  const formatador = new Intl.NumberFormat('pt-BR')
+  const formatar = (item) =>
+    new Intl.NumberFormat('pt-BR', {
+      minimumFractionDigits: item.decimais ?? 0,
+      maximumFractionDigits: item.decimais ?? 0,
+    }).format(item.valor)
 
   return (
     <section className="secao numeros" ref={escopo} aria-labelledby="numeros-titulo">
@@ -40,14 +48,15 @@ export default function Numeros() {
           {numeros.itens.map((item, i) => (
             <li className="numero" key={item.rotulo} data-revelar>
               <p className="numero-valor tabular">
+                {item.prefixo && <em className="numero-afixo">{item.prefixo}</em>}
                 <span
                   ref={(el) => {
                     valoresRef.current[i] = el
                   }}
                 >
-                  {reduzido ? formatador.format(item.valor) : '0'}
+                  {reduzido ? formatar(item) : '0'}
                 </span>
-                {item.sufixo && <em className="numero-sufixo">{item.sufixo}</em>}
+                {item.sufixo && <em className="numero-afixo">{item.sufixo}</em>}
               </p>
               <p className="numero-rotulo">{item.rotulo}</p>
               <p className="numero-detalhe">{item.detalhe}</p>

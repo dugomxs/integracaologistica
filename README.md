@@ -36,9 +36,10 @@ Quase tudo que o cliente precisa mudar está em **um único arquivo**:
 | `navegacao`    | Itens do menu (âncoras)                                      |
 | `hero`         | Título, subtítulo, botões e selos da primeira dobra          |
 | `segmentos`    | Blocos de Agronegócio e Indústrias                           |
+| `servicos`     | As três frentes de serviço                                   |
 | `diferenciais` | Cards de diferenciais                                        |
 | `processo`     | Passo a passo "Como funciona"                                |
-| `numeros`      | Estatísticas dos contadores animados                         |
+| `numeros`      | Estatísticas dos contadores (`prefixo`, `sufixo`, `decimais`) |
 | `atuacao`      | **Filiais** (cidade, UF, tipo e coordenadas) e corredores    |
 | `ctaFinal`     | Chamada final                                                |
 
@@ -142,6 +143,16 @@ não ser inferida a partir da localização.
 Ao mexer nas filiais, atualize também o bloco JSON-LD do `index.html`
 (`areaServed` e `location`), que lista as mesmas cidades para busca local.
 
+### De onde vêm os dados
+
+Números, serviços, tipos de carga, filiais e matriz saem da **apresentação
+institucional da empresa**, arquivada em `documentos/apresentacao-institucional.pdf`.
+
+Esse PDF fica **fora de `public/`** de propósito: qualquer arquivo em `public/`
+é publicado junto com o site e ficaria acessível por URL direta — e o documento
+traz telefones e e-mails pessoais da equipe. Para disponibilizá-lo no site,
+mova-o para `public/` conscientemente.
+
 ### Itens pendentes fora do `site.js`
 
 - **`index.html`** — meta tags, URL canônica e o JSON-LD de negócio local
@@ -167,6 +178,7 @@ scripts/gerar-mapa.mjs      ← baixa e processa a malha do IBGE
 │   ├── Header.jsx          ← header fixo + menu mobile + troca de tema
 │   ├── Hero.jsx            ← primeira dobra
 │   ├── Segmentos.jsx       ← Agronegócio e Indústrias
+│   ├── Servicos.jsx        ← as três frentes de serviço
 │   ├── Diferenciais.jsx    ← grade de cards
 │   ├── Processo.jsx        ← passo a passo + rota desenhada no scroll
 │   ├── Numeros.jsx         ← contadores animados
@@ -241,7 +253,6 @@ servidor — o site é uma página única com navegação por âncoras.
 
 - [x] Número do WhatsApp real em `src/config/site.js` — (62) 99811-5649
 - [ ] CNPJ, endereço e e-mail reais
-- [ ] Números da seção de estatísticas conferidos
 - [ ] Domínio final na tag `<link rel="canonical">` do `index.html`
 - [ ] Telefone e endereço atualizados no JSON-LD do `index.html`
 - [ ] Conferir se todas as fotos são da própria empresa (direito de uso)

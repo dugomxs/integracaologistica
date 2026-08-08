@@ -1,0 +1,115 @@
+/* ================================ SERVIÇOS ================================ */
+
+.servicos {
+  background: var(--fundo-2);
+  border-block: 1px solid var(--linha);
+}
+
+.servicos-grade {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.servico {
+  position: relative;
+  padding: clamp(1.75rem, 3vw, 2.25rem);
+  background: var(--fundo);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-g);
+  box-shadow: var(--sombra-cartao);
+  transition: border-color 0.4s var(--ease-suave), transform 0.4s var(--ease-saida);
+  will-change: transform;
+}
+
+.servico:hover {
+  border-color: var(--linha-azul);
+  transform: translateY(-4px);
+}
+
+/* Numeral no canto — reforça que são três caminhos, não três produtos soltos */
+.servico-numero {
+  position: absolute;
+  top: clamp(1.25rem, 2.5vw, 1.75rem);
+  right: clamp(1.25rem, 2.5vw, 1.75rem);
+  font-family: var(--fonte-mono);
+  font-size: var(--t-micro);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--texto-fraco);
+}
+
+.servico-icone {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 1.5rem;
+  color: var(--azul-claro);
+  background: var(--azul-vidro);
+  border: 1px solid var(--linha-azul);
+  border-radius: var(--raio);
+  transition: transform 0.45s var(--ease-saida);
+}
+
+.servico:hover .servico-icone {
+  transform: translateY(-3px);
+}
+
+.servico-nome {
+  font-size: var(--t-titulo);
+  color: var(--titulo);
+  max-width: 14ch;
+}
+
+.servico-texto {
+  margin-top: 0.75rem;
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--texto-suave);
+}
+
+/* --- Rodapé --- */
+.servicos-rodape {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: clamp(2.5rem, 5vw, 3.5rem);
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--linha);
+}
+
+.servicos-rodape p {
+  color: var(--texto-suave);
+  font-size: 0.9375rem;
+}
+
+.servicos-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--fonte-display);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--azul-claro);
+  transition: color 0.3s var(--ease-suave);
+}
+
+.servicos-link .seta {
+  transition: transform 0.4s var(--ease-saida);
+}
+
+.servicos-link:hover {
+  color: var(--titulo);
+}
+
+.servicos-link:hover .seta {
+  transform: translateX(5px);
+}
+
+@media (min-width: 900px) {
+  .servicos-grade {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

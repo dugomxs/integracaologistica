@@ -34,19 +34,29 @@
   display: flex;
   align-items: baseline;
   font-family: var(--fonte-display);
-  font-size: clamp(3rem, 7vw, 4.5rem);
+  /* Calibrado para "100.000" (7 dígitos) caber numa das quatro colunas
+     sem quebrar — o valor anterior estourava. */
+  font-size: clamp(2.25rem, 4.6vw, 3.375rem);
   font-weight: 800;
   line-height: 1;
   letter-spacing: -0.055em;
   color: var(--titulo);
 }
 
-.numero-sufixo {
+/* Prefixo (R$) e sufixo (t) do valor. Menores que o número, para o dado
+   seguir sendo o que salta aos olhos. */
+.numero-afixo {
   font-style: normal;
-  font-size: 0.5em;
+  font-size: 0.42em;
   font-weight: 700;
   color: var(--azul-claro);
-  margin-left: 0.08em;
+  margin-inline: 0.1em;
+}
+
+/* Sem quebra: prefixo e sufixo têm que ficar na mesma linha do número */
+.numero-valor {
+  flex-wrap: nowrap;
+  white-space: nowrap;
 }
 
 .numero-rotulo {

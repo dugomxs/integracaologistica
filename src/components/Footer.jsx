@@ -20,8 +20,10 @@ export default function Footer() {
               </span>
             </a>
             <p className="rodape-slogan">{empresa.slogan}</p>
+            <p className="rodape-tagline">{empresa.tagline}</p>
             <p className="rodape-descricao">
-              Transporte rodoviário de cargas para o agronegócio e para a indústria em todo o
+              Transporte rodoviário de cargas para o agronegócio e para a indústria. Matriz em{' '}
+              {empresa.cidade}-{empresa.uf}, com filiais em quatro estados e atendimento em todo o
               território nacional.
             </p>
           </div>

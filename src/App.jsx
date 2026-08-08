@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import Header from './components/Header'
 import Hero from './components/Hero'
 import Segmentos from './components/Segmentos'
+import Servicos from './components/Servicos'
 import Diferenciais from './components/Diferenciais'
 import Processo from './components/Processo'
 import Numeros from './components/Numeros'
@@ -38,9 +39,7 @@ export default function App() {
       <main id="conteudo" tabIndex={-1}>
         <Hero />
         <Segmentos />
-        <div className="container">
-          <div className="regua" />
-        </div>
+        <Servicos />
         <Diferenciais />
         <Processo />
         <Numeros />
