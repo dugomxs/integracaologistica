@@ -25,9 +25,10 @@ export const empresa = {
   // TODO CLIENTE: endereço e CEP da matriz
   endereco: 'Rua Exemplo, 000 — Bairro',
   cep: '00000-000',
-  // Domínio dos e-mails na apresentação é .com (não .com.br)
-  // TODO CLIENTE: confirmar se existe um endereço genérico (contato@…)
-  email: 'eduardosoares@integracaologistica.com',
+  // Sem e-mail: o site converte por WhatsApp, e o único endereço conhecido é
+  // pessoal. Para exibir um e-mail institucional (contato@integracaologistica.com),
+  // acrescente `email` aqui, a linha correspondente em Footer.jsx e a chave
+  // "email" no JSON-LD do index.html.
   site: 'https://www.integracaologistica.com',
 }
 
@@ -112,7 +113,7 @@ export const segmentos = {
       nome: 'Agronegócio',
       chamada: 'Da lavoura ao armazém, no tempo da safra.',
       descricao:
-        'A operação nasceu no agronegócio. Movimentamos grão, semente e insumo com frota própria e rede de agregados, das filiais em Mato Grosso ao destino.',
+        'A operação nasceu no agronegócio. Movimentamos grão, semente e insumo com frota própria e rede de agregados.',
       beneficios: [
         'Soja, milho e gergelim',
         'Sementes e fertilizantes',
