@@ -6,6 +6,7 @@ import Servicos from './components/Servicos'
 import Diferenciais from './components/Diferenciais'
 import Processo from './components/Processo'
 import Sobre from './components/Sobre'
+import Clientes from './components/Clientes'
 import Numeros from './components/Numeros'
 import Galeria from './components/Galeria'
 import Atuacao from './components/Atuacao'
@@ -44,6 +45,7 @@ export default function App() {
         <Diferenciais />
         <Processo />
         <Sobre />
+        <Clientes />
         <Numeros />
         <Galeria />
         <Atuacao />

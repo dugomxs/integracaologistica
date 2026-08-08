@@ -154,6 +154,16 @@ Esse PDF fica **fora de `public/`** de propósito: qualquer arquivo em `public/`
 traz telefones e e-mails pessoais da equipe. Para disponibilizá-lo no site,
 mova-o para `public/` conscientemente.
 
+Os **logos dos clientes** em `src/assets/clientes/` também saíram desse PDF.
+Cada um veio em duas camadas (cor + máscara de transparência) e foi recomposto,
+recortado na margem transparente e redimensionado. O recorte importa: sem ele,
+logos com muito espaço vazio ficam opticamente menores que os vizinhos.
+
+Na faixa eles aparecem em tom neutro e ganham cor no hover — é o que permite
+doze marcas de cores muito diferentes conviverem sem virar poluição. No tema
+escuro viram silhuetas claras, porque a maioria é escura sobre transparente e
+sumiria no fundo preto.
+
 Em `documentos/logo-original-branco.png` está o logo da empresa extraído do PDF
 (1341×470, com transparência). **Não está em uso**: é uma versão só em branco,
 que desaparece no tema claro, e é raster. O site usa a rosa dos ventos em SVG,
@@ -177,6 +187,8 @@ src/
 ├── config/site.js          ← textos, WhatsApp, dados da empresa
 scripts/gerar-mapa.mjs      ← baixa e processa a malha do IBGE
 ├── config/fotos.js         ← imports e alt das fotos da operação
+├── config/clientes.js      ← logos dos clientes
+├── assets/clientes/        ← PNGs com transparência, já recortados
 ├── assets/fotos/           ← imagens otimizadas (versionadas pelo Vite)
 ├── lib/animacoes.js        ← camada GSAP (reveal, parallax, rota, contadores)
 ├── lib/brasil.js           ← GERADO: malha do IBGE projetada (veja scripts/)
@@ -187,6 +199,7 @@ scripts/gerar-mapa.mjs      ← baixa e processa a malha do IBGE
 │   ├── Segmentos.jsx       ← Agronegócio e Indústrias
 │   ├── Servicos.jsx        ← as três frentes de serviço
 │   ├── Sobre.jsx           ← quem somos + matriz
+│   ├── Clientes.jsx        ← faixa de logos dos clientes
 │   ├── Diferenciais.jsx    ← grade de cards
 │   ├── Processo.jsx        ← passo a passo + rota desenhada no scroll
 │   ├── Numeros.jsx         ← contadores animados

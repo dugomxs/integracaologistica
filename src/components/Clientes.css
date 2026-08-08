@@ -1,0 +1,75 @@
+/* ================================ CLIENTES ================================ */
+
+.clientes-grade {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  /* O gap de 1px sobre o fundo de linha desenha a malha entre as células,
+     sem precisar de borda em cada uma (que dobraria nas junções). */
+  background: var(--linha);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio-g);
+  overflow: hidden;
+}
+
+.cliente {
+  display: grid;
+  place-items: center;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  min-height: 110px;
+  background: var(--fundo);
+  transition: background-color 0.35s var(--ease-suave);
+}
+
+/* Limita largura E altura: as marcas têm proporções muito diferentes
+   (de 5:1 a quase quadradas) e travar só a altura deixaria as quadradas
+   opticamente menores que as largas. */
+.cliente img {
+  width: 100%;
+  max-width: 150px;
+  max-height: 58px;
+  object-fit: contain;
+  /* Neutro por padrão: doze marcas de cores muito diferentes lado a lado
+     viram poluição. A cor volta no hover. */
+  filter: grayscale(1);
+  opacity: 0.62;
+  transition: filter 0.4s var(--ease-suave), opacity 0.4s var(--ease-suave);
+}
+
+.cliente:hover {
+  background: var(--fundo-2);
+}
+
+.cliente:hover img {
+  filter: grayscale(0);
+  opacity: 1;
+}
+
+/* No tema escuro a maioria dos logos é escura sobre fundo transparente e
+   sumiria. Invertidos, viram silhuetas claras — e o hover só clareia mais,
+   porque devolver a cor original faria os logos escuros desaparecerem. */
+[data-tema='escuro'] .cliente img {
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.5;
+}
+
+[data-tema='escuro'] .cliente:hover img {
+  filter: grayscale(1) brightness(0) invert(1);
+  opacity: 0.92;
+}
+
+@media (min-width: 620px) {
+  .clientes-grade {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 960px) {
+  .clientes-grade {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .cliente {
+    min-height: 130px;
+  }
+}
