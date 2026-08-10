@@ -20,6 +20,13 @@
   margin-bottom: 1.25rem;
 }
 
+/* No rodapé há espaço de sobra: o logo vem maior que no header, mas limitado
+   pela coluna para não estourar em telas estreitas. */
+.rodape-marca .marca-logo {
+  height: auto;
+  width: min(15rem, 100%);
+}
+
 .rodape-slogan {
   font-family: var(--fonte-display);
   font-size: 1.375rem;

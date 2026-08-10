@@ -17,14 +17,13 @@ export const empresa = {
   tagline: 'Movimentando negócios, entregando confiança',
   // Posicionamento da apresentação institucional
   posicionamento: 'Conectamos caminhos, integramos soluções e entregamos resultados.',
-  // TODO CLIENTE: substituir pelo CNPJ real
-  cnpj: '00.000.000/0001-00',
-  // Matriz, conforme apresentação institucional
-  cidade: 'Anápolis',
-  uf: 'GO',
-  // TODO CLIENTE: endereço e CEP da matriz
-  endereco: 'Rua Exemplo, 000 — Bairro',
-  cep: '00000-000',
+  cnpj: '49.076.217/0001-74',
+  cidade: 'Canarana',
+  uf: 'MT',
+  // O espaço entre "Sala" e "B" é um NBSP ( ): sem ele a coluna estreita
+  // do rodapé quebra a linha no meio de "Sala B".
+  endereco: 'Rua Teodoro Sampaio, 153 — Sala B, Jardim São Caetano',
+  cep: '78640-000',
   // Sem e-mail: o site converte por WhatsApp, e o único endereço conhecido é
   // pessoal. Para exibir um e-mail institucional (contato@integracaologistica.com),
   // acrescente `email` aqui, a linha correspondente em Footer.jsx e a chave
@@ -66,6 +65,12 @@ export const redes = {
   instagram: {
     handle: '@integracaologistica',
     url: 'https://instagram.com/integracaologistica',
+  },
+  linkedin: {
+    handle: 'Integração Logística',
+    // A URL tem acentos codificados em percent-encoding — é assim que o
+    // LinkedIn a publica. Não "limpe" os %C3%A7: o link deixa de funcionar.
+    url: 'https://www.linkedin.com/company/integra%C3%A7%C3%A3o-log%C3%ADstica/',
   },
 }
 
@@ -231,7 +236,7 @@ export const sobre = {
     'O crescimento veio de inovação e foco no cliente — e de uma equipe com expertise logística, que entende a exigência de cada carga antes de colocar o veículo na estrada.',
   ],
   matriz: {
-    titulo: 'Matriz em Anápolis-GO',
+    titulo: 'Matriz em Canarana-MT',
     texto: 'Time de 20 profissionais distribuídos em cinco áreas:',
     departamentos: ['Comercial', 'Operações', 'Mesa de Frete', 'Financeiro', 'Recursos Humanos'],
   },
@@ -276,7 +281,6 @@ export const processo = {
    -----------------------------------------------------------------------------
    valor  → número final do contador
    sufixo → texto exibido depois do número (+, %, mil…)
-   TODO CLIENTE: ajustar para os números reais da operação.
    ----------------------------------------------------------------------------- */
 /* Todos os valores vêm da apresentação institucional da empresa.
    `prefixo` e `sufixo` cercam o número; o contador anima só o valor. */

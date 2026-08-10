@@ -143,6 +143,31 @@ export function IconeWhatsApp({ tamanho = 24, ...props }) {
   )
 }
 
+export function IconeLinkedIn({ tamanho = 24, ...props }) {
+  return (
+    <svg
+      width={tamanho}
+      height={tamanho}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      aria-hidden="true"
+      focusable="false"
+      {...props}
+    >
+      <rect x="3" y="3" width="18" height="18" rx="4.5" />
+      {/* "i" */}
+      <circle cx="7.6" cy="7.5" r="1.15" fill="currentColor" stroke="none" />
+      <path d="M7.6 10.6V17" />
+      {/* "n" */}
+      <path d="M11.9 17v-6.4" />
+      <path d="M11.9 13.7a2.65 2.65 0 0 1 5.3 0V17" />
+    </svg>
+  )
+}
+
 export function IconeInstagram({ tamanho = 24, ...props }) {
   return (
     <svg

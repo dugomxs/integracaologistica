@@ -1,6 +1,6 @@
 import { empresa, whatsapp, redes, navegacao, segmentos, linkWhatsApp } from '../config/site'
-import RosaDosVentos from './RosaDosVentos'
-import { Icone, IconeWhatsApp, IconeInstagram } from './Icones'
+import Marca from './Marca'
+import { Icone, IconeWhatsApp, IconeInstagram, IconeLinkedIn } from './Icones'
 import './Footer.css'
 
 export default function Footer() {
@@ -12,13 +12,7 @@ export default function Footer() {
         <div className="rodape-topo">
           {/* Marca + slogan */}
           <div className="rodape-marca">
-            <a href="#topo" className="marca" aria-label={`${empresa.nomeCompleto} — voltar ao início`}>
-              <RosaDosVentos tamanho={38} detalhado={false} className="marca-rosa" />
-              <span className="marca-texto">
-                <strong>Integração</strong>
-                <span>Logística</span>
-              </span>
-            </a>
+            <Marca rotulo={`${empresa.nomeCompleto} — voltar ao início`} />
             <p className="rodape-slogan">{empresa.slogan}</p>
             <p className="rodape-tagline">{empresa.tagline}</p>
             <p className="rodape-descricao">
@@ -82,6 +76,17 @@ export default function Footer() {
                 >
                   <IconeInstagram tamanho={17} />
                   <span>{redes.instagram.handle}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={redes.linkedin.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`LinkedIn da ${redes.linkedin.handle}`}
+                >
+                  <IconeLinkedIn tamanho={17} />
+                  <span>LinkedIn</span>
                 </a>
               </li>
               <li className="rodape-endereco">

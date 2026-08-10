@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { empresa, navegacao, linkWhatsApp } from '../config/site'
-import RosaDosVentos from './RosaDosVentos'
+import Marca from './Marca'
 import BotaoTema from './BotaoTema'
 import { Icone } from './Icones'
 import './Header.css'
@@ -54,18 +54,10 @@ export default function Header() {
   return (
     <header className={`cabecalho ${compacto ? 'compacto' : ''}`}>
       <div className="cabecalho-interno container">
-        <a
-          href="#topo"
-          className="marca"
-          aria-label={`${empresa.nomeCompleto} — ir para o início`}
+        <Marca
+          rotulo={`${empresa.nomeCompleto} — ir para o início`}
           onClick={() => setMenuAberto(false)}
-        >
-          <RosaDosVentos tamanho={34} detalhado={false} className="marca-rosa" />
-          <span className="marca-texto">
-            <strong>Integração</strong>
-            <span>Logística</span>
-          </span>
-        </a>
+        />
 
         <nav className="menu-desktop" aria-label="Navegação principal">
           {navegacao.map(({ id, rotulo }) => (

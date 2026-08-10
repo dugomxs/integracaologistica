@@ -81,8 +81,8 @@
 
     <!--
       JSON-LD — dados estruturados de negócio local.
-      TODO CLIENTE: atualizar telefone, endereço, coordenadas e CNPJ com os dados reais.
-      Mantenha em sincronia com src/config/site.js
+      Mantenha em sincronia com src/config/site.js.
+      TODO CLIENTE: falta apenas o domínio final (canonical, og:url e @id/url aqui).
     -->
     <script type="application/ld+json">
       {
@@ -97,12 +97,13 @@
         "telephone": "+5562998115649",
         "priceRange": "$$",
         "image": "https://www.integracaologistica.com.br/og-image.jpg",
+        "taxID": "49.076.217/0001-74",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "Rua Exemplo, 000 — Bairro",
-          "addressLocality": "Anápolis",
-          "addressRegion": "GO",
-          "postalCode": "00000-000",
+          "streetAddress": "Rua Teodoro Sampaio, 153 — Sala B, Jardim São Caetano",
+          "addressLocality": "Canarana",
+          "addressRegion": "MT",
+          "postalCode": "78640-000",
           "addressCountry": "BR"
         },
         "areaServed": [
@@ -123,7 +124,7 @@
           },
           {
             "@type": "Place",
-            "name": "Filial Canarana",
+            "name": "Matriz Canarana",
             "address": { "@type": "PostalAddress", "addressLocality": "Canarana", "addressRegion": "MT", "addressCountry": "BR" }
           },
           {
@@ -152,7 +153,10 @@
             "address": { "@type": "PostalAddress", "addressLocality": "Paranaguá", "addressRegion": "PR", "addressCountry": "BR" }
           }
         ],
-        "sameAs": ["https://instagram.com/integracaologistica"],
+        "sameAs": [
+          "https://instagram.com/integracaologistica",
+          "https://www.linkedin.com/company/integra%C3%A7%C3%A3o-log%C3%ADstica/"
+        ],
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",

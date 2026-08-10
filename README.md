@@ -30,9 +30,9 @@ Quase tudo que o cliente precisa mudar está em **um único arquivo**:
 
 | Bloco          | O que controla                                              |
 | -------------- | ----------------------------------------------------------- |
-| `empresa`      | Nome, CNPJ, endereço, e-mail, cidade/UF                     |
+| `empresa`      | Nome, slogan, CNPJ, endereço e cidade/UF da matriz           |
 | `whatsapp`     | **Número do WhatsApp** e mensagem pré-preenchida do chat     |
-| `redes`        | Instagram                                                    |
+| `redes`        | Instagram e LinkedIn                                         |
 | `navegacao`    | Itens do menu (âncoras)                                      |
 | `hero`         | Título, subtítulo, botões e selos da primeira dobra          |
 | `segmentos`    | Blocos de Agronegócio e Indústrias                           |
@@ -164,16 +164,41 @@ doze marcas de cores muito diferentes conviverem sem virar poluição. No tema
 escuro viram silhuetas claras, porque a maioria é escura sobre transparente e
 sumiria no fundo preto.
 
-Em `documentos/logo-original-branco.png` está o logo da empresa extraído do PDF
-(1341×470, com transparência). **Não está em uso**: é uma versão só em branco,
-que desaparece no tema claro, e é raster. O site usa a rosa dos ventos em SVG,
-que funciona nos dois temas e escala sem perder nitidez. Para adotar o logo
-original, seria preciso uma versão escura — de preferência vetorial.
+### Logo
+
+O logo oficial está em `src/assets/logo.png` e é usado pelo componente
+`Marca.jsx`, que aparece no header e no rodapé. Um arquivo só atende aos dois
+temas: as letras têm contorno branco e miolo escuro, então o desenho se sustenta
+tanto sobre fundo claro quanto sobre fundo escuro.
+
+Ele foi recortado de `documentos/logo-original.jpeg`, a arte que a empresa
+enviou — um JPEG sobre fundo cinza chapado. O fundo foi removido por *flood
+fill* a partir das bordas (o cinza que toca a borda vira transparente; o cinza
+de dentro da rosa dos ventos fica), com meio-tom nas bordas para não sobrar
+franja. Depois a imagem foi reduzida para 560 px de largura e teve as cores
+quantizadas — o ruído de JPEG deixava o PNG em 142 kB, e assim ficou em 52 kB
+sem diferença visível no tamanho em que o logo é exibido.
+
+**Se aparecer uma versão vetorial (SVG/AI/EPS), troque.** A fonte disponível é
+um print de baixa resolução: 238 px de altura no original, o que basta para os
+50 px do header mas não sobra margem.
+
+Há também `documentos/logo-original-branco.png` (1341×470, extraído do PDF, com
+transparência de verdade). Não está em uso porque é a versão só em branco, que
+some no tema claro.
+
+O **favicon** continua sendo a rosa dos ventos desenhada em SVG
+(`public/favicon.svg`), e não um recorte do logo: na arte original a rosa fica
+parcialmente encoberta pela letra "Ã", então um recorte sairia incompleto — e,
+a 16 px, o logo inteiro seria ilegível.
 
 ### Itens pendentes fora do `site.js`
 
-- **`index.html`** — meta tags, URL canônica e o JSON-LD de negócio local
-  (telefone, endereço e CNPJ reais). Mantenha em sincronia com o `site.js`.
+- **`index.html`** — meta tags, URL canônica e o JSON-LD de negócio local.
+  Mantenha em sincronia com o `site.js`: CNPJ, endereço, telefone e cidade
+  aparecem nos dois arquivos. **Falta só o domínio final**, usado em
+  `canonical`, `og:url`, `og:image`, `twitter:image` e no `@id`/`url` do JSON-LD
+  (hoje `integracaologistica.com.br`, enquanto o `site.js` usa `.com`).
 - **`public/og-image.jpg`** — imagem de compartilhamento em redes sociais
   (1200×630). Já criada a partir da foto do entardecer; troque se quiser outra.
 - **`public/favicon.svg`** — já criado com a rosa dos ventos da marca.
@@ -188,6 +213,7 @@ src/
 scripts/gerar-mapa.mjs      ← baixa e processa a malha do IBGE
 ├── config/fotos.js         ← imports e alt das fotos da operação
 ├── config/clientes.js      ← logos dos clientes
+├── assets/logo.png         ← logo oficial (header e rodapé)
 ├── assets/clientes/        ← PNGs com transparência, já recortados
 ├── assets/fotos/           ← imagens otimizadas (versionadas pelo Vite)
 ├── lib/animacoes.js        ← camada GSAP (reveal, parallax, rota, contadores)
@@ -209,7 +235,8 @@ scripts/gerar-mapa.mjs      ← baixa e processa a malha do IBGE
 │   ├── Footer.jsx          ← contato, redes, CNPJ
 │   ├── BotaoWhatsApp.jsx   ← CTA flutuante
 │   ├── BotaoTema.jsx       ← alterna claro/escuro e persiste a escolha
-│   ├── RosaDosVentos.jsx   ← motif da marca (SVG)
+│   ├── Marca.jsx           ← logo oficial, no header e no rodapé
+│   ├── RosaDosVentos.jsx   ← motif decorativo de fundo (SVG)
 │   └── Icones.jsx          ← ícones SVG inline
 ├── App.jsx
 └── main.jsx
@@ -273,9 +300,10 @@ servidor — o site é uma página única com navegação por âncoras.
 ## Checklist antes de publicar
 
 - [x] Número do WhatsApp real em `src/config/site.js` — (62) 99811-5649
-- [ ] CNPJ, endereço e e-mail reais
-- [ ] Domínio final na tag `<link rel="canonical">` do `index.html`
-- [ ] Telefone e endereço atualizados no JSON-LD do `index.html`
+- [x] CNPJ real — 49.076.217/0001-74
+- [x] Endereço da matriz — Canarana-MT
+- [x] Telefone, endereço e CNPJ no JSON-LD do `index.html`
+- [ ] Domínio final no `canonical`, no Open Graph e no JSON-LD do `index.html`
 - [ ] Conferir se todas as fotos são da própria empresa (direito de uso)
 - [ ] Testado em celular, tablet e desktop
 - [ ] Testado nos dois temas (claro e escuro)
